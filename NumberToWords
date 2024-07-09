@@ -1,0 +1,35 @@
+def number_to_word(n):
+  if n==1000:
+    return "one thousand"
+  if n==0:
+    return "zero"
+  ones=["","one","two","three","four","five","six","seven","eight","nine"]
+  teens=["ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]
+  tens=["","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"
+  words=[]
+  if n//100>0:
+    words.append(ones[n//100]+"hundred")
+    n%=100
+    if n>0:
+      words.append("and")
+  if n>=20:
+    words.append(tens[n//10])
+    n%10
+    if n>0:
+      words.append(ones[n])
+  elif n>=10:
+      words.append(teens[n-10])
+  elif n>0:
+      words.append(ones[n])
+  return "".join(words)
+
+def counting_letters_to_n(n):
+  total_letters=0
+  for i in range(1,n+1):
+    words=number_to_words(i)
+    letters_count=len(words.replace(" ","").replace("-",""))
+    total_letters+=letters_count
+  return total_letters
+
+total_used_letters=counting_letters_to_n(1000)
+print("Total letters used:",total_used_letters)
